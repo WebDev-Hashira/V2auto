@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AUTOO</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ========================================
+           CSS VARIABLES
+           ======================================== */
+        :root {
+            --primary-color: #4F46E5;
+            --main-color: #f5b754;
+            --primary-hover: #4338CA;
+            --primary-active: #3730A3;
+            --text-dark: #1F2937;
+            --text-medium: #4B5563;
+            --text-light: #6B7280;
+            --input-bg: #F9FAFB;
+            --input-border: #E5E7EB;
+            --card-bg: #FFFFFF;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* ========================================
+           RESET & BASE STYLES
+           ======================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: linear-gradient(135deg, #fffaf2 0%, #ffe7c1 100%);
+            min-height: 100vh;
+            /* display: flex; */
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Background pattern overlay */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+
+         /* ========================================
+   NAVBAR STYLES
+   ======================================== */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #ffffff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    z-index: 1000;
+    padding: 0;
+}
+
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 80px;
+}
+
+.nav-logo a {
+    font-size: 1.5rem;
+    font-weight: 700;
+    font-family: var(--font-display);
+    color: #1a1d29;
+    letter-spacing: -1px;
+    text-decoration: none;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    margin: 0;
+}
+
+.nav-links a {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #4B5563;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.nav-links a:hover {
+    color: #1a1d29;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-orange);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.nav-cta {
+    display: flex;
+}
+
+.btn-get-started {
+    background-color: #F59E0B;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.75rem 1.75rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: var(--font-body);
+}
+
+.btn-get-started:hover {
+    background-color: #D97706;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+}
+
+.nav-menu-btn {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.nav-menu-btn span {
+    width: 25px;
+    height: 3px;
+    background-color: #1a1d29;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+/* Add padding to body to prevent content from hiding under fixed navbar */
+body {
+    padding-top: 80px;
+}
+
+/* ========================================
+   RESPONSIVE NAVBAR
+   ======================================== */
+@media (max-width: 768px) {
+    .nav-container {
+        padding: 0 1.5rem;
+        height: 70px;
+        background-color: var(--main-color);
+    }
+    
+    .nav-links {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background-color: var(--main-color);
+        flex-direction: column;
+        justify-content: flex-start;
+        padding: 2rem 0;
+        gap: 1.5rem;
+        transition: left 0.3s ease;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .nav-links.active {
+        left: 0;
+    }
+    
+    .nav-links li {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .nav-links a {
+        display: block;
+        padding: 0.75rem 2rem;
+        font-size: 1.1rem;
+    }
+    
+    .nav-cta {
+        display: none;
+    }
+    
+    .nav-menu-btn {
+        display: flex;
+    }
+    
+    .nav-menu-btn.active span:nth-child(1) {
+        transform: rotate(45deg) translate(8px, 8px);
+    }
+    
+    .nav-menu-btn.active span:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .nav-menu-btn.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -7px);
+    }
+    
+    body {
+        padding-top: 70px;
+    }
+}
+
+        /* ========================================
+           MAIN CONTAINER
+           ======================================== */
+        .search-container {
+            width: 100%;
+            max-width: 1200px;
+            background: var(--card-bg);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-xl);
+            padding: 48px;
+            position: relative;
+            margin: 30px auto;
+            z-index: 1;
+            animation: slideUp 0.6s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ========================================
+           HEADER
+           ======================================== */
+        .search-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .search-header h1 {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .search-header p {
+            font-size: 16px;
+            color: var(--text-medium);
+            font-weight: 400;
+        }
+
+        /* ========================================
+           FORM LAYOUT
+           ======================================== */
+        .search-form {
+            display: grid;
+            gap: 24px;
+        }
+
+        .form-row {
+            display: grid;
+            gap: 20px;
+            align-items: end;
+        }
+
+        /* Desktop layout: 3 columns in each row */
+        .form-row-1 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .form-row-2 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .form-row-3 {
+            grid-template-columns: 1fr;
+        }
+
+        /* ========================================
+           FORM GROUPS
+           ======================================== */
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group label {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-dark);
+            letter-spacing: 0.2px;
+        }
+
+        /* ========================================
+           INPUT STYLES
+           ======================================== */
+        /* Searchable select using datalist */
+        .form-select {
+            width: 100%;
+            padding: 14px 40px 14px 16px;
+            font-size: 15px;
+            font-family: inherit;
+            color: var(--text-dark);
+            background-color: var(--input-bg);
+            background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%236B7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            border: 2px solid transparent;
+            border-radius: var(--radius-sm);
+            outline: none;
+            transition: var(--transition);
+            list-style: none;
+        }
+
+        .form-select:hover {
+            background-color: #F3F4F6;
+        }
+
+        .form-select:focus {
+            background-color: var(--card-bg);
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        }
+
+        .form-select::placeholder {
+            color: var(--text-light);
+        }
+
+        /* Text inputs */
+        .form-input {
+            width: 100%;
+            padding: 14px 16px;
+            font-size: 15px;
+            font-family: inherit;
+            color: var(--text-dark);
+            background-color: var(--input-bg);
+            border: 2px solid transparent;
+            border-radius: var(--radius-sm);
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .form-input::placeholder {
+            color: var(--text-light);
+        }
+
+        .form-input:hover {
+            background-color: #F3F4F6;
+        }
+
+        .form-input:focus {
+            background-color: var(--card-bg);
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        }
+
+        /* Textarea */
+        .form-textarea {
+            width: 100%;
+            padding: 14px 16px;
+            font-size: 15px;
+            font-family: inherit;
+            color: var(--text-dark);
+            background-color: var(--input-bg);
+            border: 2px solid transparent;
+            border-radius: var(--radius-sm);
+            outline: none;
+            transition: var(--transition);
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-textarea::placeholder {
+            color: var(--text-light);
+        }
+
+        .form-textarea:hover {
+            background-color: #F3F4F6;
+        }
+
+        .form-textarea:focus {
+            background-color: var(--card-bg);
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        }
+
+        /* ========================================
+           SEARCH BUTTON
+           ======================================== */
+        .btn-search {
+            background: var(--primary-color);
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 14px 32px;
+            border: none;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow-md);
+            letter-spacing: 0.3px;
+            white-space: nowrap;
+            min-height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-search:hover {
+            background: var(--primary-hover);
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+        }
+
+        .btn-search:active {
+            background: var(--primary-active);
+            transform: translateY(0);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-search:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.3), var(--shadow-lg);
+        }
+
+        .btn-search:disabled {
+            background: #9CA3AF;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* Search icon */
+        .btn-search::before {
+            content: '';
+            width: 18px;
+            height: 18px;
+            background-image: url("data:image/svg+xml,%3Csvg width='18' height='18' viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M16.5 16.5L12.875 12.875M14.8333 8.16667C14.8333 11.8486 11.8486 14.8333 8.16667 14.8333C4.48477 14.8333 1.5 11.8486 1.5 8.16667C1.5 4.48477 4.48477 1.5 8.16667 1.5C11.8486 1.5 14.8333 4.48477 14.8333 8.16667Z' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+          /* Footer */
+/* ========================================
+   FOOTER STYLES
+   ======================================== */
+.footer {
+    background-color: #1F2937;
+    color: #ffffff;
+    padding: 4rem 0 0;
+    margin-top: 5rem;
+}
+
+.footer-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.footer-columns {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-col h4 {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 1px;
+    margin-bottom: 1.5rem;
+    font-family: var(--font-display);
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+}
+
+.footer-links li {
+    margin: 0;
+}
+
+.footer-links a {
+    color: #9CA3AF;
+    font-size: 0.9375rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    display: inline-block;
+}
+
+.footer-links a:hover {
+    color: #ffffff;
+}
+
+/* Social Icons */
+.footer-socials {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.social-link {
+    width: 44px;
+    height: 44px;
+    border: 2px solid #4B5563;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #9CA3AF;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.social-link svg {
+    width: 20px;
+    height: 20px;
+}
+
+.social-link:hover {
+    border-color: #ffffff;
+    color: #ffffff;
+    transform: translateY(-3px);
+}
+
+/* Footer Bottom */
+.footer-bottom {
+    padding: 2rem 0;
+    text-align: center;
+}
+
+.footer-bottom p {
+    color: #9CA3AF;
+    font-size: 0.875rem;
+    margin: 0;
+}
+
+/* ========================================
+   RESPONSIVE FOOTER
+   ======================================== */
+@media (max-width: 1024px) {
+    .footer-columns {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .header{
+        margin-top: 3rem;
+    }
+    .footer {
+        padding: 3rem 0 0;
+        margin-top: 4rem;
+    }
+    
+    .footer-container {
+        padding: 0 1.5rem;
+    }
+    
+    .footer-columns {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+        padding-bottom: 2rem;
+    }
+    
+    .footer-col h4 {
+        font-size: 0.8125rem;
+        margin-bottom: 1.25rem;
+    }
+    
+    .footer-links {
+        gap: 0.75rem;
+    }
+    
+    .footer-links a {
+        font-size: 0.875rem;
+    }
+    
+    .footer-socials {
+        gap: 0.75rem;
+    }
+    
+    .social-link {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .social-link svg {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-columns {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .footer-col {
+        text-align: left;
+    }
+    
+    .footer-bottom {
+        padding: 1.5rem 0;
+    }
+    
+    .footer-bottom p {
+        font-size: 0.8125rem;
+        line-height: 1.6;
+    }
+}
+
+        /* ========================================
+           TABLET LAYOUT (768px - 1023px)
+           ======================================== */
+        @media (max-width: 1023px) {
+            .search-container {
+                padding: 36px;
+                margin: 30px auto;
+            }
+
+            .search-header h1 {
+                font-size: 28px;
+            }
+
+            .form-row-1,
+            .form-row-2 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .form-row-3 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ========================================
+           MOBILE LAYOUT (≤767px)
+           ======================================== */
+        @media (max-width: 767px) {
+            body {
+                padding: 16px;
+            }
+
+            .search-container {
+                padding: 28px 20px;
+                border-radius: var(--radius-md);
+                margin: 80px auto;
+            }
+
+            .search-header {
+                margin-bottom: 32px;
+            }
+
+            .search-header h1 {
+                font-size: 24px;
+            }
+
+            .search-header p {
+                font-size: 14px;
+            }
+
+            .search-form {
+                gap: 20px;
+            }
+
+            .form-row-1,
+            .form-row-2,
+            .form-row-3 {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .form-group label {
+                font-size: 13px;
+            }
+
+            .form-select,
+            .form-input {
+                padding: 16px 40px 16px 16px;
+                font-size: 16px; /* Prevent zoom on iOS */
+            }
+
+            .form-input {
+                padding: 16px;
+            }
+
+            .form-textarea {
+                padding: 16px;
+                font-size: 16px;
+            }
+
+            .btn-search {
+                padding: 16px 32px;
+                font-size: 16px;
+                min-height: 56px;
+            }
+        }
+
+        /* ========================================
+           SMALL MOBILE (≤480px)
+           ======================================== */
+        @media (max-width: 480px) {
+            .search-container {
+                padding: 24px 16px;
+            }
+
+            .search-header h1 {
+                font-size: 22px;
+            }
+        }
+
+        /* ========================================
+           ACCESSIBILITY
+           ======================================== */
+        /* High contrast focus for keyboard navigation */
+        .form-select:focus-visible,
+        .form-input:focus-visible,
+        .form-textarea:focus-visible,
+        .btn-search:focus-visible {
+            outline: 3px solid var(--primary-color);
+            outline-offset: 2px;
+        }
+
+        /* Reduced motion for users who prefer it */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* ========================================
+           PRINT STYLES
+           ======================================== */
+        @media print {
+            body {
+                background: white;
+            }
+
+            .search-container {
+                box-shadow: none;
+                border: 1px solid #E5E7EB;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+    <div class="nav-container">
+        <div class="nav-logo">
+            <a href="./index.html">RENTAL</a>
+        </div>
+        
+        <ul class="nav-links">
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="./index.html">Rent</a></li>
+            <li><a href="./index.html">Ride</a></li>
+            <li><a href="./index.html">Contact</a></li>
+        </ul>
+        
+        <div class="nav-cta">
+            <button class="btn-get-started">Get Started</button>
+        </div>
+        
+        <div class="nav-menu-btn" id="menu-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</nav>
+
+
+    <!-- Main Search Container -->
+    <div class="search-container">
+        <!-- Header -->
+        <div class="search-header">
+            <h1>Find Your Perfect Vehicle</h1>
+            <p>Search through thousands of quality vehicles</p>
+        </div>
+
+        <!-- Search Form -->
+        <form class="search-form" id="vehicleSearchForm" action="#" method="POST">
+            <!-- Row 1: Year, Make, Model -->
+            <div class="form-row form-row-1">
+                <div class="form-group">
+                    <label for="year">Year</label>
+                    <input 
+                        type="text" 
+                        id="year" 
+                        name="year" 
+                        class="form-select" 
+                        list="yearList"
+                        placeholder="Select or type year"
+                        autocomplete="off"
+                        required
+                    >
+                    <datalist id="yearList">
+                        <option value="2024">
+                        <option value="2023">
+                        <option value="2022">
+                        <option value="2021">
+                        <option value="2020">
+                        <option value="2019">
+                        <option value="2018">
+                        <option value="2017">
+                        <option value="2016">
+                        <option value="2015">
+                        <option value="2014">
+                        <option value="2013">
+                        <option value="2012">
+                        <option value="2011">
+                        <option value="2010">
+                    </datalist>
+                </div>
+
+                <div class="form-group">
+                    <label for="make">Make</label>
+                    <input 
+                        type="text" 
+                        id="make" 
+                        name="make" 
+                        class="form-select" 
+                        list="makeList"
+                        placeholder="Select or type make"
+                        autocomplete="off"
+                        required
+                    >
+                    <datalist id="makeList">
+                        <option value="Acura">
+                        <option value="Audi">
+                        <option value="BMW">
+                        <option value="Buick">
+                        <option value="Cadillac">
+                        <option value="Chevrolet">
+                        <option value="Chrysler">
+                        <option value="Dodge">
+                        <option value="Ford">
+                        <option value="Genesis">
+                        <option value="GMC">
+                        <option value="Honda">
+                        <option value="Hyundai">
+                        <option value="Infiniti">
+                        <option value="Jaguar">
+                        <option value="Jeep">
+                        <option value="Kia">
+                        <option value="Land Rover">
+                        <option value="Lexus">
+                        <option value="Lincoln">
+                        <option value="Mazda">
+                        <option value="Mercedes-Benz">
+                        <option value="Mitsubishi">
+                        <option value="Nissan">
+                        <option value="Porsche">
+                        <option value="Ram">
+                        <option value="Subaru">
+                        <option value="Tesla">
+                        <option value="Toyota">
+                        <option value="Volkswagen">
+                        <option value="Volvo">
+                    </datalist>
+                </div>
+
+                <div class="form-group">
+                    <label for="model">Model</label>
+                    <input 
+                        type="text" 
+                        id="model" 
+                        name="model" 
+                        class="form-select" 
+                        list="modelList"
+                        placeholder="Select or type model"
+                        autocomplete="off"
+                        required
+                    >
+                    <datalist id="modelList">
+                        <option value="Accord">
+                        <option value="Camry">
+                        <option value="Civic">
+                        <option value="Corolla">
+                        <option value="CR-V">
+                        <option value="Elantra">
+                        <option value="Equinox">
+                        <option value="Escape">
+                        <option value="Explorer">
+                        <option value="F-150">
+                        <option value="Highlander">
+                        <option value="Malibu">
+                        <option value="Pilot">
+                        <option value="RAV4">
+                        <option value="Rogue">
+                        <option value="Silverado">
+                        <option value="Sonata">
+                        <option value="Tacoma">
+                        <option value="Tucson">
+                    </datalist>
+                </div>
+            </div>
+
+            <!-- Row 2: Full Name, Email, Phone Number -->
+            <div class="form-row form-row-2">
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input 
+                        type="text" 
+                        id="fullName" 
+                        name="fullName" 
+                        class="form-input" 
+                        placeholder="Enter your full name"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        class="form-input" 
+                        placeholder="your.email@example.com"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input 
+                        type="tel" 
+                        id="phone" 
+                        name="phone" 
+                        class="form-input" 
+                        placeholder="(123) 456-7890"
+                        required
+                    >
+                </div>
+            </div>
+
+            <!-- Row 3: Message and Search Button -->
+            <div class="form-row form-row-3">
+                <div class="form-group">
+                    <label for="message">Message (Optional)</label>
+                    <textarea 
+                        id="message" 
+                        name="message" 
+                        class="form-textarea" 
+                        placeholder="Tell us about your vehicle preferences or any specific requirements..."
+                    ></textarea>
+                </div>
+
+                <button type="submit" class="btn-search">
+                    Search
+                </button>
+            </div>
+        </form>
+    </div>
+
+
+    <!-- Footer Section -->
+    <footer class="footer">
+    <div class="footer-container">
+        <div class="footer-columns">
+            <div class="footer-col">
+                <h4>RESOURCES</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Installation Manual</a></li>
+                    <li><a href="#">Release Note</a></li>
+                    <li><a href="#">Community Help</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h4>COMPANY</h4>
+                <ul class="footer-links">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Career</a></li>
+                    <li><a href="#">Press</a></li>
+                    <li><a href="#">Support</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h4>PRODUCT</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Demo</a></li>
+                    <li><a href="#">Security</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Features</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h4>FOLLOW US</h4>
+                <div class="footer-socials">
+                    <a href="#" class="social-link" aria-label="Facebook">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-link" aria-label="Twitter">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-link" aria-label="LinkedIn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                            <rect x="2" y="9" width="4" height="12"></rect>
+                            <circle cx="4" cy="4" r="2"></circle>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>Copyright © 2026 HYPE Dev</p>
+        </div>
+    </div>
+</footer>
+
+    <script>
+        // Form validation and UX enhancements
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('vehicleSearchForm');
+            const phoneInput = document.getElementById('phone');
+
+            // Phone number formatting
+            phoneInput.addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length > 0) {
+                    if (value.length <= 3) {
+                        value = '(' + value;
+                    } else if (value.length <= 6) {
+                        value = '(' + value.slice(0, 3) + ') ' + value.slice(3);
+                    } else {
+                        value = '(' + value.slice(0, 3) + ') ' + value.slice(3, 6) + '-' + value.slice(6, 10);
+                    }
+                }
+                e.target.value = value;
+            });
+
+            // Form submission handler
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form data
+                const formData = new FormData(form);
+                const data = Object.fromEntries(formData);
+                
+                // Validate required fields
+                const requiredFields = ['year', 'make', 'model', 'fullName', 'email', 'phone'];
+                let isValid = true;
+                
+                requiredFields.forEach(field => {
+                    if (!data[field]) {
+                        isValid = false;
+                    }
+                });
+
+                if (!isValid) {
+                    alert('Please fill in all required fields.');
+                    return;
+                }
+
+                // Email validation
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(data.email)) {
+                    alert('Please enter a valid email address.');
+                    return;
+                }
+
+                // Phone validation (at least 10 digits)
+                const phoneDigits = data.phone.replace(/\D/g, '');
+                if (phoneDigits.length < 10) {
+                    alert('Please enter a valid phone number.');
+                    return;
+                }
+                
+                // In a real application, you would send this to a server
+                console.log('Form submitted with data:', data);
+                
+                // Example: Send to API
+                // fetch('/api/vehicle-inquiry', {
+                //     method: 'POST',
+                //     headers: { 'Content-Type': 'application/json' },
+                //     body: JSON.stringify(data)
+                // }).then(response => response.json())
+                //   .then(result => console.log(result));
+                
+                alert('Thank you! Your vehicle inquiry has been submitted.\n\nWe will contact you shortly at:\n' + data.email);
+                
+                // Optionally reset the form
+                // form.reset();
+            });
+        });
+
+        // Mobile menu toggle
+const menuBtn = document.getElementById('menu-btn');
+const navLinks = document.querySelector('.nav-links');
+
+if (menuBtn && navLinks) {
+    menuBtn.addEventListener('click', () => {
+        menuBtn.classList.toggle('active');
+        navLinks.classList.toggle('active');
+    });
+
+    // Close mobile menu when clicking on a link
+    const navLinksItems = document.querySelectorAll('.nav-links a');
+    navLinksItems.forEach(link => {
+        link.addEventListener('click', () => {
+            menuBtn.classList.remove('active');
+            navLinks.classList.remove('active');
+        });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!menuBtn.contains(e.target) && !navLinks.contains(e.target)) {
+            menuBtn.classList.remove('active');
+            navLinks.classList.remove('active');
+        }
+    });
+}
+    </script>
+</body>
+</html>
