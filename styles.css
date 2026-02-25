@@ -114,7 +114,7 @@ header {
 }
 
 .nav-logo a img {
-  width: 150px;
+  width: 130px;
 }
 
 .nav-links {
@@ -240,6 +240,7 @@ body {
         display: block;
         padding: 0.75rem 2rem;
         font-size: 1.1rem;
+        color: #15191d;
     }
     
     .nav-cta {
@@ -278,7 +279,7 @@ body {
   max-width: 750px;
   margin-inline: auto;
   margin-bottom: 2rem;
-  font-size: 3.5rem;
+  font-size: 3rem;
   font-weight: 700;
   font-family: var(--header-font);
   color: var(--text-dark);
@@ -541,7 +542,7 @@ body {
 }
 
 .select__price span {
-  font-size: 3rem;
+  font-size: 1.5rem;
   line-height: 3rem;
   color: var(--text-dark);
 }
@@ -798,6 +799,7 @@ footer {
   .footer__container {
     grid-template-columns: repeat(2, 1fr);
   }
+
 }
 
 @media (width > 768px) {

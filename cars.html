@@ -3,8 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AUTOO</title>
+    <title>Cars</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="car-style.css">
@@ -15,18 +19,18 @@
     <nav class="navbar">
     <div class="nav-container">
         <div class="nav-logo">
-            <a href="./index.html">Celebrity car dealer</a>
+          <a href="index.html"><img src="assets/logo.png" alt=""></a>
         </div>
         
         <ul class="nav-links">
-            <li><a href="./index.html">Home</a></li>
-            <li><a href="./index.html">Rent</a></li>
-            <li><a href="./index.html">Ride</a></li>
-            <li><a href="./index.html">Contact</a></li>
+            <li><a href="./index.html">HOME</a></li>
+            <li><a href="./index.html">RIDES</a></li>
+            <li><a href="./index.html">HIGHLIGHT</a></li>
+            <li><a href="./index.html">CONTACT</a></li>
         </ul>
         
         <div class="nav-cta">
-            <button class="btn-get-started">Get Started</button>
+            <button class="btn-get-started">Get in-touch</button>
         </div>
         
         <div class="nav-menu-btn" id="menu-btn">
@@ -44,26 +48,26 @@
                 <!-- <div class="header-label">Handy picked</div> -->
                 <h2>Featured Listings</h2>
             </div>
-            <div class="toggle-group">
+                   <!--  <div class="toggle-group">
                 <button class="toggle-btn active">New</button>
                 <button class="toggle-btn">Used</button>
-            </div>
+            </div> -->
         </header>
 
         <!-- Listings Grid -->
         <div class="listings-grid">
             <!-- NEW CARS - Featured Large Card -->
             <div class="featured-card" data-category="new">
-                <img src="https://images.unsplash.com/photo-1617531653332-bd46c24f2068?w=800&h=1000&fit=crop&q=80" alt="BMW 8-series 2-door coupe grey" class="car-image">
+                <img src="assets/listing-1.png" class="car-image">
                 <div class="card-overlay">
-                    <h3 class="car-title">BMW 8-series 2-door coupe grey</h3>
+                    <h3 class="car-title">Lamborghini Revuelto</h3>
                     <div class="badges">
-                        <span class="badge year">2024</span>
-                        <span class="badge spec">Automatic</span>
-                        <span class="badge spec">Petrol</span>
-                        <span class="badge spec">Front Wheel Drive</span>
+                        <span class="badge year">2026</span>
+                        <span class="badge spec">Hybrid V12</span>
+                        <span class="badge spec">AWD</span>
+                        <span class="badge spec">Carbon fibre chassis</span>
                     </div>
-                    <div class="car-price">₦600,000,000</div>
+                    <div class="car-price">₦900,000,000</div>
                 </div>
             </div>
 
@@ -72,7 +76,7 @@
                 <!-- New Card 1 -->
                 <div class="car-card" data-category="new">
                     <div class="image-container">
-                        <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=600&h=400&fit=crop&q=80" alt="Chevrolet Camaro convertible" class="car-image">
+                        <img src="assets/listing-2.jpeg" class="car-image">
                         <div class="favorite-icon">
                             <svg viewBox="0 0 24 24">
                                 <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
@@ -88,12 +92,12 @@
                         </div> -->
                     </div>
                     <div class="card-content">
-                        <h3 class="car-title">Chevrolet Camaro 2-door convertib...</h3>
-                        <div class="car-price">₦4.0m</div>
+                        <h3 class="car-title">Honda Accord Sport</h3>
+                        <div class="car-price">₦25m</div>
                         <div class="badges">
-                            <span class="badge year">2024</span>
-                            <span class="badge spec">Automatic</span>
-                            <span class="badge spec">Diesel</span>
+                            <span class="badge year">2020</span>
+                            <span class="badge spec">2.0L Turbocharged engine</span>
+                            <span class="badge spec">Sport trim</span></span>
                         </div>
                     </div>
                 </div>
@@ -101,7 +105,7 @@
                 <!-- New Card 2 -->
                 <div class="car-card" data-category="new">
                     <div class="image-container">
-                        <img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=600&h=400&fit=crop&q=80" alt="Ferrari LaFerrari red" class="car-image">
+                        <img src="assets/listing-3.jpeg" class="car-image">
                         <div class="favorite-icon">
                             <svg viewBox="0 0 24 24">
                                 <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
@@ -117,12 +121,13 @@
                         </div> -->
                     </div>
                     <div class="card-content">
-                        <h3 class="car-title">Ferrari LaFerrari 2-door coupe red</h3>
-                        <div class="car-price">₦8.1m</div>
+                        <h3 class="car-title">Mustang G-T convertible</h3>
+                        <div class="car-price">₦60m</div>
                         <div class="badges">
-                            <span class="badge year">2024</span>
+                            <span class="badge year">2019</span>
                             <span class="badge spec">Automatic</span>
-                            <span class="badge spec">Diesel</span>
+                            <span class="badge spec">V8-Engine</span>
+                             <span class="badge spec">Foreign used</span>
                         </div>
                     </div>
                 </div>
@@ -130,7 +135,7 @@
                 <!-- New Card 3 -->
                 <div class="car-card" data-category="new">
                     <div class="image-container">
-                        <img src="https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=600&h=400&fit=crop&q=80" alt="Audi e8 4-door sedan silver" class="car-image">
+                        <img src="assets/listing-4.png" class="car-image">
                         <div class="favorite-icon">
                             <svg viewBox="0 0 24 24">
                                 <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
@@ -146,12 +151,12 @@
                         </div> -->
                     </div>
                     <div class="card-content">
-                        <h3 class="car-title">Audi e8 4-door sedan silver</h3>
-                        <div class="car-price">₦7.0m</div>
+                        <h3 class="car-title">Hyundai Genesis </h3>
+                        <div class="car-price">₦59.5m</div>
                         <div class="badges">
-                            <span class="badge year">2024</span>
+                            <span class="badge year">2021</span>
                             <span class="badge spec">Automatic</span>
-                            <span class="badge spec">Diesel</span>
+                            <span class="badge spec">Panoramic roof</span>
                         </div>
                     </div>
                 </div>
@@ -159,7 +164,7 @@
                 <!-- New Card 4 -->
                 <div class="car-card" data-category="new">
                     <div class="image-container">
-                        <img src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=600&h=400&fit=crop&q=80" alt="Mercedes-Benz C-class 2-door coupe" class="car-image">
+                        <img src="assets/listing-5.png" class="car-image">
                         <div class="favorite-icon">
                             <svg viewBox="0 0 24 24">
                                 <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
@@ -175,12 +180,13 @@
                         </div> -->
                     </div>
                     <div class="card-content">
-                        <h3 class="car-title">Mercedes-Benz C-class 2-door cou...</h3>
-                        <div class="car-price">₦7.8m</div>
+                        <h3 class="car-title">Mercedes-Benz E450 4MATIC</h3>
+                        <div class="car-price">₦66m</div>
                         <div class="badges">
-                            <span class="badge year">2024</span>
+                            <span class="badge year">2019</span>
                             <span class="badge spec">Automatic</span>
-                            <span class="badge spec">Diesel</span>
+                            <span class="badge spec">V6-engine</span>
+                            <span class="badge spec">AWD</span>
                         </div>
                     </div>
                 </div>
@@ -329,11 +335,11 @@
         <!-- Header -->
         <div class="search-header">
             <h1>Find Your Perfect Vehicle</h1>
-            <p>Search through thousands of quality vehicles</p>
+            <p>Lets us know what vehicle you're looking to buy</p>
         </div>
 
         <!-- Search Form -->
-        <form class="search-form" id="vehicleSearchForm" action="#" method="POST">
+        <form class="search-form" id="vehicleSearchForm" action="https://formspree.io/f/mdalylnb" method="POST">
             <!-- Row 1: Year, Make, Model -->
             <div class="form-row form-row-1">
                 <div class="form-group">
@@ -483,7 +489,7 @@
                         id="phone" 
                         name="phone" 
                         class="form-input" 
-                        placeholder="(123) 456-7890"
+                        placeholder="phone number"
                         required
                     >
                 </div>
@@ -502,7 +508,7 @@
                 </div>
 
                 <button type="submit" class="btn-search">
-                    Search
+                    Submit
                 </button>
             </div>
         </form>
@@ -513,67 +519,53 @@
 
     
 <!-- Footer Section -->
-    <footer class="footer">
-    <div class="footer-container">
-        <div class="footer-columns">
-            <div class="footer-col">
-                <h4>RESOURCES</h4>
-                <ul class="footer-links">
-                    <li><a href="#">Installation Manual</a></li>
-                    <li><a href="#">Release Note</a></li>
-                    <li><a href="#">Community Help</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-col">
-                <h4>COMPANY</h4>
-                <ul class="footer-links">
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Career</a></li>
-                    <li><a href="#">Press</a></li>
-                    <li><a href="#">Support</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-col">
-                <h4>PRODUCT</h4>
-                <ul class="footer-links">
-                    <li><a href="#">Demo</a></li>
-                    <li><a href="#">Security</a></li>
-                    <li><a href="#">FAQ</a></li>
-                    <li><a href="#">Features</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-col">
-                <h4>FOLLOW US</h4>
-                <div class="footer-socials">
-                    <a href="#" class="social-link" aria-label="Facebook">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-                        </svg>
-                    </a>
-                    <a href="#" class="social-link" aria-label="Twitter">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
-                        </svg>
-                    </a>
-                    <a href="#" class="social-link" aria-label="LinkedIn">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                            <rect x="2" y="9" width="4" height="12"></rect>
-                            <circle cx="4" cy="4" r="2"></circle>
-                        </svg>
-                    </a>
-                </div>
-            </div>
+     <footer>
+      <div class="section__container footer__container">
+        <div class="footer__col">
+          <h4>Resources</h4>
+          <ul class="footer__links">
+            <li><a href="#">Inventory</a></li>
+            <li><a href="#">Release Note</a></li>
+            <li><a href="#">Community Help</a></li>
+          </ul>
         </div>
-        
-        <div class="footer-bottom">
-            <p>Copyright © 2026 HYPE Dev</p>
+        <div class="footer__col">
+          <h4>Company</h4>
+          <ul class="footer__links">
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Support</a></li>
+          </ul>
         </div>
-    </div>
-</footer>
+        <div class="footer__col">
+          <h4>Product</h4>
+          <ul class="footer__links">
+            <li><a href="#">Cars</a></li>
+            <li><a href="#">SUV</a></li>
+            <li><a href="#">Vans</a></li>
+            <li><a href="#">Others</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Contact Us</h4>
+          <ul class="footer__socials">
+            <li>
+              <a href="#"><i class="ri-instagram-fill"></i></a>
+            </li>
+            <li>
+              <a href="#"><i class="ri-whatsapp-fill"></i></a>
+            </li>
+            <li>
+              <a href="#"><i class="ri-snapchat-fill"></i></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bar">
+        Copyright © 2026 HYPE Dev
+      </div>
+    </footer>
 
     <script>
         // Toggle button functionality with card filtering
