@@ -60,7 +60,7 @@
             color: var(--text-primary);
             line-height: 1.6;
             min-height: 100vh;
-            padding: 3rem 0;
+            padding: 3rem 0 0 0;
         }
 
         a {
@@ -569,6 +569,7 @@ footer {
   display: grid;
   gap: 4rem 2rem;
   border-bottom: 1px solid var(--text-light);
+  grid-template-columns: repeat(4, 1fr);
 }
 
 .footer__col h4 {
